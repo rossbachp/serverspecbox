@@ -1,0 +1,5 @@
+echo == Updating, installing packages
+
+sudo apt-get -y update
+sudo apt-get -yqq install bridge-utils jq git
+sudo gem install bundler

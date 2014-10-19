@@ -1,0 +1,49 @@
+echo == pull my serverspec
+
+su - vagrant -c 'git config --global user.email "peter.rossbach@bee42.com"'
+su - vagrant -c 'git config --global user.name "Peter Rossbach"'
+
+cd /home/vagrant
+[[ ! -d serverspec2 ]] && mkdir serverspec2
+cd serverspec2
+
+[[ ! -d specinfra ]] && git clone https://github.com/rossbachp/specinfra
+cd specinfra
+git pull --rebase
+git fetch --tags
+git checkout docker_exec
+bundle
+touch integration-test/wercker.yml
+bundle exec rake build
+sudo gem install --local pkg/$( ls -tr1 pkg | tail -1)
+cd ..
+[[ ! -d serverspec ]] && git clone https://github.com/rossbachp/serverspec
+cd serverspec
+git pull --rebase
+git fetch --tags
+git checkout docker_exec
+bundle
+touch integration-test/wercker.yml
+bundle exec rake build
+sudo gem install --local pkg/$( ls -tr1 pkg | tail -1)
+cd ..
+sudo chown -R vagrant:vagrant serverspec2
+
+# check httpd with nsenter
+cd /vagrant/docker.d/http2
+docker build -t=rossbachp/httpd .
+export CID=`docker run -tdi rossbachp/httpd`
+export NSENTER_PID=`docker inspect -f '{{ .State.Pid }}' $CID`
+cd /vargant/spec.d/httpd
+rake
+
+# check tomcat
+# need to be install docker-api with native bindings
+sudo apt-get install -y ruby1.9.1-full
+sudo gem install rspec docker-api
+cd /vagrant/docker.d/tomcat
+docker build -t=rossbachp/tomcat:8 .
+export CID=`docker run -tdi --name=tomcat8 rossbachp/tomcat:8`
+export NSENTER_PID=`docker inspect -f '{{ .State.Pid }}' $CID`
+cd /vargant/spec.d/tomcat
+rake
