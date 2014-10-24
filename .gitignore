@@ -2,3 +2,4 @@
 .vagrant
 presentation/tdd-docker/tomcat-reference.tar.gz
 presentation/tdd-docker/tomcat
+presentation/tdd-docker/build
