@@ -1,2 +1,4 @@
 .DS_Store
 .vagrant
+presentation/tdd-docker/tomcat-reference.tar.gz
+presentation/tdd-docker/tomcat
