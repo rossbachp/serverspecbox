@@ -1,0 +1,42 @@
+require 'rake'
+require 'rspec/core/rake_task'
+
+hosts = [
+  { :name  => 'docker.example.com',  :roles => %w( base ) },
+  { :name  => 'ruby.example.com', :roles => %w( base httpd ) },
+  { :name  => 'tomcat8.exmaple.com',  :roles => %w( base tomcat ) },
+]
+
+hosts = hosts.map do |host|
+  {
+    :name      => host[:name],
+    :shortname => host[:name].split('.')[0],
+    :roles     => host[:roles]
+  }
+end
+
+desc "Run serverspec to all hosts"
+task :default => 'serverspec:all'
+task :spec    => 'serverspec:all'
+
+class ServerspecTask < RSpec::Core::RakeTask
+
+  attr_accessor :target
+
+  def spec_command
+    cmd = super
+    "env TARGET_HOST=#{target} #{cmd}"
+  end
+
+end
+
+namespace :serverspec do
+  task :all => hosts.map {|h| 'serverspec:' + h[:shortname] }
+  hosts.each do |host|
+    desc "Run serverspec to #{host[:name]}"
+    ServerspecTask.new(host[:shortname].to_sym) do |t|
+      t.target = host[:name]
+      t.pattern = 'spec/{' + host[:roles].join(',') + '}/*_spec.rb'
+    end
+  end
+end

@@ -1,5 +1,5 @@
 #!/bin/bash
-DECK=tdd-docker
+DECK=tdd-on-wjax
 if [ ! "x" == "x`docker ps -a | grep $DECK`" ]; then
   docker rm $DECK
 fi
