@@ -8,12 +8,12 @@
 
 <=>
 
-### You Build    It
+## You Build    It
 ## You Test     It
 ### You Run      It
 ### You Automate It
 ### You Measure  It
-### You Change   It
+## You Change   It
 
 ---
 ## Plötzlich schlägt es ein....
@@ -56,7 +56,8 @@ CMD "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
 ---
 ### Anspruch
 
-  * Teilen der Docker-Images und einfach nutzen, statt selber entwickeln.
+  * Teilen der Docker-Images
+  * Nutzen von Docker-Images, statt selber entwickeln.
   * Eigene Inhalte hinzufügen
   * Optimierung
   * Infrastruktur Umgebung implementieren
@@ -120,7 +121,7 @@ Alles nur Software, oder...
     * Verifizere das der Test wirklich fehlschlägt
     * Implementiere den Fix oder die Eigenschaft
     * Lasse den Test erneut laufen
-    * Verifiziere das er nun erfolgreich ist.
+    * Verifiziere, das er nun erfolgreich ist.
     * Prüfe, ob nun nichts andere fehlschlägt!
     * Optimiereren
   * Wiederhole das Verfahren bis das System die gewünschten Eigenschaften hat.
@@ -876,12 +877,15 @@ BDD Alternativen im Java Space:
 ![Container shipping personal](/images/container-ship-personal-style.jpg)
 
 ---
-## Docker Entwickler Speacial
+## Einer geht noch...
+---
+## Docker Entwickler Spezial Magazin
 
 ![](images/Docker-entwicklerspezial.png)
 ***
   * Mitte November 2014 im Buchhandel
-  * Vorbestellung ab Ende der Woche auf der Seite `http://entwicker.de/docker`
+  * Vorbestellung ab Ende der Woche auf der Seite `https://entwickler.de/magazin`
+
 ---
 ## Die neue DevOps-Community braucht Dich!
 
