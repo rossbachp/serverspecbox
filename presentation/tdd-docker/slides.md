@@ -1,35 +1,35 @@
-# Triple-D: Testdriven docker development
+## Testdriven docker development
+![](images/ship-container-with-a-bee.png)
 
-  - [Peter Rossbach <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com)
-  - @PRossbach
+***
+[@PRossbach](https://twitter.com/PRossbach)
+---
+##Dev Ops
+
+<=>
+
+### You Build    It
+## You Test     It
+### You Run      It
+### You Automate It
+### You Measure  It
+### You Change   It
 
 ---
-Test First-Strategie mit und für Docker-Container
+## Plötzlich schlägt es ein....
 
 ![](images/testing-infrastructur.png)
----
-## Mein Rucksack
-
-  * Peter Rossbach
-    * Systemarchitekt
-    * Java Entwickler
-    * DevOps
-    * Apache Tomcat Committer
-    * Mitglied der Apache Software Foundation
-    * Geschäftsführer der bee42 solutions gbmh
-    * Autor
-***
-Peter schreibt gern IT-Geschichten und erzählt davon!
---
-## Das Ruder gehört in vertrauensvolle Hände
-
-![Peter Rossbach](images/peter-rossbach.jpg)
 
 ---
-## Docker - Prinzip!
+## TDD für Infrastruktur
+![TDD targets](images/tdd-targets.png)
+
+---
+## Docker - MANTRA!
   - **B**uild, Ship and Run
-  - **A**ny App
+  - **A**ny App,
   - **A**nywhere
+
 ![Docker Whale](images/docker-whale-home-logo.png)
 -
 ### Docker Architektur
@@ -56,38 +56,57 @@ CMD "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
 ---
 ### Anspruch
 
-  * Kopiere und einfach nutzen, statt entwickeln.
-  * Eigene Inhalte integrieren
+  * Teilen der Docker-Images und einfach nutzen, statt selber entwickeln.
+  * Eigene Inhalte hinzufügen
   * Optimierung
-  * Auto Failover, Auto Laodbalancing oder Zero Downtime berücksichtigen
+  * Infrastruktur Umgebung implementieren
+    * Konfiguration
+    * Netzwerk
+    * Monitoring und Logging
+    * Storage
+  * Auto-Failover, Auto-Laodbalancing oder Zero-Downtime berücksichtigen
   * Entwicklung von Infrastruktur ist eine tägliche Herausforderung
-  * Alles nur Software, oder...
-
+***
+Alles nur Software, oder...
 -
 ### Irgendwie geht es immer
-![Container personal style](images/container-ship-single-style.jpg)
+![Container as personal style](images/container-ship-single-style.jpg)
 -
 ### Selbst bei bester Vorbereitung, ...
-![Container wrong stack](images/container-ship-wrong-stack.jpg)
+![Container with wrong stack](images/container-ship-wrong-stack.jpg)
 -
 ### Schlimme Unfälle passieren
-![Ship wrack](images/container-ship-wrack.jpg)
+![Ship as a wrack](images/container-ship-wrack.jpg)
+
 ---
 ## Testgetriebene Infrastruktur für Docker
 
+### Vieles kann ich zeigen, aber nicht alles...
+-
+### Was behandelt der Talk nicht:
+
+
   * Integrationstest
-    * [Jolokia TestFramework](https://github.com/rhuss/jolokia-it)
-    * [Docker Maven Plugin](https://github.com/rhuss/docker-maven-plugin)
-  * Modellierung und Validierung der Infrastruktur
-    * [serverspec](http://serverspec.org)
-    * [Docker-Container mit serverspec testen](http://www.infrabricks.de/blog/2014/09/10/docker-container-mit-serverspec-testen/)
-    * [Chef Test Kitchen](http://kitchen.ci/)
-  * Entwicklung von Artefakten => Dockerfile
-    * Geht es nicht auch einfacher für Docker?
-    * [Pieter Josst Van de Sande: TDD und Docker]( http://blog.wercker.com/2013/12/23/Test-driven-development-for-docker.html)
+    - [Jolokia TestFramework](https://github.com/rhuss/jolokia-it)
+    - [Docker Maven Plugin](https://github.com/rhuss/docker-maven-plugin)
+  * Loadtests
+  * Komplexe Infrastruktur-Testsetups
+    - [Chef Test Kitchen](http://kitchen.ci/)
 
 -
-### Weniger ist mehr, einfach besser!
+###  Was behandelt der Talk:
+
+  * Modellierung und Validierung einer Docker-Infrastruktur
+    - [serverspec](http://serverspec.org)
+    - [Docker-Container mit serverspec testen](http://www.infrabricks.de/blog/2014/09/10/docker-container-mit-serverspec-testen/)
+  * Entwicklung von Artefakten => Dockerfile
+    - Geht es nicht auch einfacher für Docker?
+    - [Pieter Josst Van de Sande: TDD und Docker]( http://blog.wercker.com/2013/12/23/Test-driven-development-for-docker.html)
+  * Modell zum Test der Infrastruktur (Docker-Host)
+  * Ideen zur Verwaltung von Testspecs
+
+-
+### Weniger ist mehr und einfach besser!
 ![Docker mini size](images/docker-small.png)
 ---
 ## Handwerker bei der Arbeit...
@@ -370,7 +389,7 @@ Finished in 0.12662 seconds
 describe "running java" do
     before(:all) {
       @container = Docker::Container.create(
-         'Image' => 'bee42/tomcat:8',
+         'Image' => 'bee42/tomcat8:latest',
          'Cmd' => ['java', '-version'],
          'Tty' => true)
     }
@@ -380,13 +399,12 @@ describe "running java" do
     end
     it "is java expected" do
       expect(@container.tap(&:start).
-      attach(:tty => true)[0][0]).
-      to include( "1.7.0_65")
+      attach(:tty => true)[0][0]).to include( "1.7.0_65")
     end
 end
 ```
 ***
-Hups, der Test hängt!
+Hups, der Test hängt manchmal!
 -
 ![test failed](images/ampel-rot.png)
 
@@ -576,9 +594,6 @@ Finished in 8.43 seconds
 -
 ![test success](images/ampel-gruen.png)
 
-- Verbesserung der Testformulierung mit serverspec 2.2.x
-
-docker_inspect
 
 ---
 ## Die nächsten Herausforderungen warten
@@ -610,7 +625,7 @@ Leider noch ohne Tests, aber das wird bald!
   * Erleichterung der Formulierung von Matches
   * Testen einer ganzen Infrastruktur
 ***
-Release 2.0 soll im Oktober herauskommen.
+Serverspec Release 2.0 ist im Oktober herausgekommen.
 -
 ### Beispiel
 ```
@@ -637,8 +652,46 @@ Kritik: Mit diesem Test ist nicht sichergestellt, das der Apache wirklich unter 
 -
 ### ServerSpec Architektur
 ![Serverspec](images/serverspec-architecture.png)
+
 -
-### Die Herausforderung
+## Verbesserung der Testformulierung mit serverspec >2.3.x
+  - docker_image
+  - docker_container
+-
+### docker_image
+
+```ruby
+require 'serverspec'
+set :backend, :exec
+
+describe docker_image("bee42/tomcat:8") do
+  it { should exist }
+end
+describe docker_image("bee42/tomcat:8") do
+  its(['Config.Cmd']) { should include '/opt/tomcat/bin/catalina.sh' }
+end
+```
+-
+### docker_container
+
+```ruby
+# docker run -tdi --name "c1" busybox
+describe docker_container('c1') do
+  it { should be_present }
+  it { should be_running }
+
+  its(:HostConfig_NetworkMode) { should eq 'bridge' }
+  its(:Path) { should eq '/bin/sh' }
+end
+
+# docker run -tdi --name "c2" -v /data:/tmp busybox
+describe docker_container('c2') do
+  it { should be_running }
+  it { should have_volume('/tmp','/data') }
+end
+```
+-
+### Die wirkliche Herausforderung
 
   * Testen im Container
     * Deployment von Serverspec in den Container
@@ -658,23 +711,25 @@ Kritik: Mit diesem Test ist nicht sichergestellt, das der Apache wirklich unter 
 ![Serverspec with nsenter](images/serverspec_via_nsenter_to_container.png)
 
 ***
-Nichts für schwache Nerven
--
-### Links
-  * Serverspec
-    * [serverspec](http://serverspec.org/)
-    * [sepcinfra](https://github.com/serverspec/specinfra)
-    * [rspec](http://rspec.info/)
-  * [Blog www.infrabricks.de](http://www.infrabricks.de)
-  * [Docker Container mit Serverspec testen](http://www.infrabricks.de/blog/2014/09/10/docker-container-mit-serverspec-testen/)
-  * [Security-Tests mit Serverspec](http://www.infrabricks.de/blog/2014/06/12/security-tests-mit-serverspec/)
-  * [Infrataster und Serverspec: Blackbox- und Whitebox-Testing](http://www.infrabricks.de/blog/2014/05/22/blackbox-und-whitebox-testing/)
-  * [Serverspec mit Vagrant verbinden](http://www.infrabricks.de/blog/2014/05/09/serverspec-mit-vagrant-verbinden/)
-  * [Serverspec Standalone betreiben](http://www.infrabricks.de/blog/2014/05/07/serverspec-standalone-betreiben/)
-  * [Serverspec: Server spezifizieren und testen](http://www.infrabricks.de/blog/2014/04/25/serverspec-server-spezifizieren-und-testen/)
-  * Präsentationen
-    * [OSDC 2014 Andreas Schmidt: Testing server infrastructure with serverspec](http://www.slideee.com/slide/osdc-2014-andreas-schmidt-testing-server-infrastructure-with-serverspec)
+  - Nichts für schwache Nerven : [ServerspecBox](https://github.com/rossbachp/serverspecbox.git)
+  - Support für `docker exec` (Docker 1.3) in der Planung
 
+-
+#### Beispiel container_nsenterpid_spec.rb
+```ruby
+require 'serverspec'
+
+set :os, :arch => 'x86_64', :family => 'debian', :distro => 'ubuntu', :release => 14
+set :backend, :nsenter
+set :docker_cid, "tomcat8"
+set :nsenter_pid, nil
+
+puts "#{Specinfra.configuration.docker_cid}"
+
+describe package('wget') do
+  it { should be_installed }
+end
+```
 ---
 ## Tipps
 
@@ -684,6 +739,36 @@ Nichts für schwache Nerven
     * Analyse des Wegs, macht die nächste Schätzung besser
   * Übung macht den Meister!
   * Verpacken der Testumgebung in einen Docker Container!
+
+---
+## Organisation von Testspezifikationen
+
+  * Spec in `Host', `Container`, `Roles` und `Tags`
+  * Wiederverwendbarkeit von Tests durch Konfigurationen
+    - Einbinden von Properties
+  * Reporting automatisieren
+
+```
+spec
+├── all
+│   ├── lldpd_spec.rb
+│   └── network_spec.rb
+├── memcache
+│   └── memcached_spec.rb
+└── web
+    └── apache2_spec.rb
+```
+
+***
+[Vincent Bernat](https://github.com/vincentbernat/serverspec-example.git)  
+-
+### Beispiel mit Tag
+```ruby
+describe file('/data/images'), :tag => "paris" do
+  it { should be_mounted.with( :type => 'nfs' ) }
+end
+```
+
 ---
 ## Triple-E Inspriationen
 
@@ -761,6 +846,7 @@ Nichts für schwache Nerven
   - Seht es als notwenige Massnahme die Änderbarkeit und Erhalt  zu sichern
   - Prüfen, ob ein Docker-Container bestimmte Normen erfüllt
     - Die Kombination nsenter+serverspec ist viel versprechend!
+  - Testorganisation ist notwendig
 
 ***
 Der Anfang ist gemacht, aber mehr muss noch getan werden!
@@ -778,13 +864,10 @@ Der Anfang ist gemacht, aber mehr muss noch getan werden!
   * Testgetriebene Infrastruktur-Entwicklung sichern den Erfolg.
   * Ein inkrementelles Vorgehen schafft Qualität.
   * Testen ist eine Chance für schnellen Know How-Erwerb.
--
-RSpec und Ruby benötigen einige Übung,
-ist für mich ehr einem Ritt auf dem Rasiermesser.
-Autsch!
-
 ***
-Alternative im Java Space:
+Der Umgang mit RSpec und Ruby benötigen einige Übung.
+***
+BDD Alternativen im Java Space:
   * [Spock](https://code.google.com/p/spock/)
   * [Jbehave](http://jbehave.org/)
 -
@@ -793,26 +876,84 @@ Alternative im Java Space:
 ![Container shipping personal](/images/container-ship-personal-style.jpg)
 
 ---
-## Triple-D: Testdriven Docker Development braucht Dich!
+## Docker Entwickler Speacial
 
-  * Vielen Dank!
-  * Peter Rossbach
+![](images/Docker-entwicklerspezial.png)
+***
+  * Mitte November 2014 im Buchhandel
+  * Vorbestellung ab Ende der Woche auf der Seite `http://entwicker.de/docker`
+---
+## Die neue DevOps-Community braucht Dich!
+
+bee42 solutions gmbh hat den Bau seiner **Infrabricks Line** begonnen!
 
 ***
-bee42 solutions gmbh hat den Bau der **Infrabricks line** begonnen!
+  * Peter Rossbach
+    * Systemarchitekt
+    * Java Entwickler
+    * DevOps und Infra-Coder mit Herz
+    * Apache Tomcat Committer
+    * Mitglied der Apache Software Foundation
+    * Geschäftsführer der bee42 solutions gbmh
+    * Autor
+
+***
+Peter erzählt gern IT-Geschichten!
+-
+### Nächsten Streiche
+
+  * Mitte November 2014 erscheint ein Docker-Sonderheft
+    * Basis KnowHow und realler Einsatz von Docker
+    * Docker-Poster
+  * [WJAX 2014 3-7.11.2014](https://jax.de/wjax2014/)
+    * DevOps-Days
+    * Docker-Workshop
+    * Diskussion
+  * [Continuous Lifecycle](http://www.continuouslifecycle.de/)
+  * Q2 2015: Buch zum Thema Docker!
+
+-
+### Kontakt
+
+Folien dieses Vortrags
+```bash
+docker run -tid -p 8000:8000 rossbachp/tdd-docker:webtechcon2014
+```
+**Available at 31.10.2014***
 
   * [<peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com)
-  * @PRossbach
+  * [@PRossbach](http://twitter.com/PRossbach)
   * [Infrabricks Blog](http://www.infrabricks.de)
+  * [bee42](http://www.bee42.com)
+
+-
+### Das Ruder gehört in vertrauensvolle Hände
+![Peter Rossbach](images/peter-rossbach.jpg)
+Helfe gerne!
 
 -
 ### Links
 
   * [Blog Infrabricks](http://www.infrabricks.de)
-  * [serverspec](http://serverspec.org)
   * [PIETER JOOST VAN DE SANDE: TDD und Docker]( http://blog.wercker.com/2013/12/23/Test-driven-development-for-docker.html)
   * [rspec](http://rspec.info/)
   * [Ruby net http client](http://ruby-doc.org/stdlib-2.1.3/libdoc/net/http/rdoc/Net/HTTP.html)
   * [Ruby Docker API](https://github.com/swipely/docker-api)
   * [Apache Tomcat](http://tomcat.apache.org)
   * [Chris Jones - Missing Guide to boot2docker](http://viget.com/extend/how-to-use-docker-on-os-x-the-missing-guide)
+
+-
+### Mehr zu Serverspec
+  * Serverspec
+    * [serverspec](http://serverspec.org/)
+    * [sepcinfra](https://github.com/serverspec/specinfra)
+    * [rspec](http://rspec.info/)
+  * [ServerspecBox](https://github.com/rossbachp/serverspecbox.git)
+  * [Docker Container mit Serverspec testen](http://www.infrabricks.de/blog/2014/09/10/docker-container-mit-serverspec-testen/)
+  * [Security-Tests mit Serverspec](http://www.infrabricks.de/blog/2014/06/12/security-tests-mit-serverspec/)
+  * [Infrataster und Serverspec: Blackbox- und Whitebox-Testing](http://www.infrabricks.de/blog/2014/05/22/blackbox-und-whitebox-testing/)
+  * [Serverspec mit Vagrant verbinden](http://www.infrabricks.de/blog/2014/05/09/serverspec-mit-vagrant-verbinden/)
+  * [Serverspec Standalone betreiben](http://www.infrabricks.de/blog/2014/05/07/serverspec-standalone-betreiben/)
+  * [Serverspec: Server spezifizieren und testen](http://www.infrabricks.de/blog/2014/04/25/serverspec-server-spezifizieren-und-testen/)
+  * Präsentationen
+    * [OSDC 2014 Andreas Schmidt: Testing server infrastructure with serverspec](http://www.slideee.com/slide/osdc-2014-andreas-schmidt-testing-server-infrastructure-with-serverspec)
