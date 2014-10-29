@@ -1,35 +1,54 @@
-# Triple-D: Testdriven docker development
+# Testgetriebene Infrastruktur als Code
+
+  - [Peter Rossbach | <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com) | @PRossbach
+  - [Andreas Schmidt | <andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de) | @aschmidt75
+---
+
+## Triple-D: Testdriven docker development
 
   - [Peter Rossbach <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com)
   - @PRossbach
 
 ---
-Test First-Strategie mit und für Docker-Container
+**Test-First-Strategie** mit und für Docker-Container
 
 ![](images/testing-infrastructur.png)
 ---
 ## Mein Rucksack
 
-  * Peter Rossbach
+  * **Peter Rossbach**
     * Systemarchitekt
     * Java Entwickler
     * DevOps
     * Apache Tomcat Committer
     * Mitglied der Apache Software Foundation
-    * Geschäftsführer der bee42 solutions gbmh
+    * Geschäftsführer der bee42 solutions GmbH
     * Autor
 ***
 Peter schreibt gern IT-Geschichten und erzählt davon!
---
+-
 ## Das Ruder gehört in vertrauensvolle Hände
 
 ![Peter Rossbach](images/peter-rossbach.jpg)
 
+-
+## Noch ein Rucksack ..
+
+  * **Andreas Schmidt**
+    * Systemarchitekt
+    * Ruby Entwickler
+    * DevOps
+    * (Netzwerk-)Security
+    * Autor
+    * Cassini Consulting
+***
+
 ---
-## Docker - Prinzip!
+## Das Docker-Prinzip für Microservices
   - **B**uild, Ship and Run
   - **A**ny App
   - **A**nywhere
+
 ![Docker Whale](images/docker-whale-home-logo.png)
 -
 ### Docker Architektur
@@ -72,8 +91,29 @@ CMD "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
 -
 ### Schlimme Unfälle passieren
 ![Ship wrack](images/container-ship-wrack.jpg)
+-
+### Herausforderungen
+
+  * TDD seit Jahren Standard im Entwicklungsbereich
+  * Einzug TDD ins Konfigurationsmanagement
+    * z.B. Puppet + rspec-puppet
+-
+### Sind das nur "Ops"-Belange?
+-
+### DevOps
+
+  * Konfigurationsmanagement-Code stammt auch aus der Entwicklung
+  * Image-basierte Ansätze
+  * Docker-Container stammen von Entwicklungs-Teams
+-
+### Build Chains produzieren nicht nur Anwendungssoftware
+
+Build Chains produzieren Infrastruktur.
+Diese sollte testbar sein.
+
+
 ---
-## Testgetriebene Infrastruktur für Docker
+## Testgetriebene Infrastruktur as Code für Docker
 
   * Integrationstest
     * [Jolokia TestFramework](https://github.com/rhuss/jolokia-it)
@@ -98,15 +138,15 @@ CMD "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
 ## Test Driven Development für Docker
 
   * Starte mit einem gebrochenen Test
-    * Verifizere das der Test wirklich fehlschlägt
+    * Verifiziere, dass der Test wirklich fehlschlägt
     * Implementiere den Fix oder die Eigenschaft
     * Lasse den Test erneut laufen
-    * Verifiziere das er nun erfolgreich ist.
-    * Prüfe, ob nun nichts andere fehlschlägt!
-    * Optimiereren
+    * Verifiziere, dass er nun erfolgreich ist.
+    * Prüfe, ob nun nichts anderes fehlschlägt!
+    * Optimiereren / Refactoring
   * Wiederhole das Verfahren bis das System die gewünschten Eigenschaften hat.
 -
-### TDD- Arbeitsweise
+### TDD-Arbeitsweise
 ![TDD](images/tdd.png)
 
 ---
@@ -434,7 +474,7 @@ end
 ![test failed](images/ampel-rot.png)
 
 -
-### Installation der Apache Tomcat Package
+### Installation des Apache Tomcat Package
 
 **Dockerfile**
 ```
@@ -516,15 +556,16 @@ RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION
   * Images sind sehr gross!
     * 350Mb für einen Tomcat...
   * Reduktion der einzelen Layer auf das notwendig!
-  * Löschen was nicht gebraucht wird!
+  * Löschen, was nicht gebraucht wird!
     * Temporäre Datei und Caches entfernen.
     * Dokumentation braucht man nicht mehr zur Runtime.
     * Build Packages löschen - Heroku Buildpacks sind grauenvoll!
-    * Ein Compiler gehört nicht in die Produktion.
-    * Die richtige Wahl des Base Images (debootstrap!)
+    * Ein Compiler gehört nicht in die Produktion
+    * Die richtige Wahl des Base-Images (z.B. debootstrap)
 
 ***
 [Squashing Docker Images](http://jasonwilder.com/blog/2014/08/19/squashing-docker-images/)
+
 [Scratch  Image](http://blog.xebia.com/2014/07/04/create-the-smallest-possible-docker-container/)
 -
 ### squash skript
@@ -562,7 +603,8 @@ $ docker images
 | ---------- | -------- | -- |------------ |
 | bee42/tomcat8 | 201409241010-squash | 7dbd7dd03726 | 312 MB |
 | bee42/tomcat8 | 201409241007 | dc2af8867b3c | 350 MB |
---
+
+-
 ### Test it!
 ```
 $ ls
@@ -575,10 +617,6 @@ Finished in 8.43 seconds
 ```
 -
 ![test success](images/ampel-gruen.png)
-
-- Verbesserung der Testformulierung mit serverspec 2.2.x
-
-docker_inspect
 
 ---
 ## Die nächsten Herausforderungen warten
@@ -608,9 +646,11 @@ Leider noch ohne Tests, aber das wird bald!
   * Verschiedene Backends
   * Erleichterung der Formulierung der Checks
   * Erleichterung der Formulierung von Matches
-  * Testen einer ganzen Infrastruktur
+  * Testen einer ganzen Infrastruktur/Umgebung
 ***
-Release 2.0 soll im Oktober herauskommen.
+
+Aktuelle Version 2.3.1 mit Docker-Unterstützung-
+
 -
 ### Beispiel
 ```
@@ -634,6 +674,23 @@ end
 
 ***
 Kritik: Mit diesem Test ist nicht sichergestellt, das der Apache wirklich unter dem Port 80 läuft und die Konfiguration nutzt!
+-
+### Beispiel für Docker-Container (ab version 2.3.0)
+```
+describe docker_image('busybox:latest') do
+  it { should exist }
+  its(['Architecture']) { should eq 'amd64' }
+  its(['Config.Cmd']) { should include '/bin/sh' }
+end
+
+describe docker_container('tomcat8') do
+  it { should exist }
+  it { should be_running }
+  it { should have_volume('/tmp', '/data') }
+  its(['HostConfig.NetworkMode']) { should eq 'bridge' }
+end
+```
+
 -
 ### ServerSpec Architektur
 ![Serverspec](images/serverspec-architecture.png)
