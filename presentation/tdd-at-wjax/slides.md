@@ -1,9 +1,10 @@
 # Testgetriebene Infrastruktur als Code
 
-- [Peter Rossbach <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com) | @PRossbach
-- [Andreas Schmidt <andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de) | @aschmidt75
+  - [Peter Rossbach | <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com) | @PRossbach
+  - [Andreas Schmidt | <andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de) | @aschmidt75
+---
 
-# Triple-D: Testdriven docker development
+## Triple-D: Testdriven docker development
 
   - [Peter Rossbach <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com)
   - @PRossbach
@@ -25,12 +26,13 @@
     * Autor
 ***
 Peter schreibt gern IT-Geschichten und erzählt davon!
---
+-
 ## Das Ruder gehört in vertrauensvolle Hände
 
 ![Peter Rossbach](images/peter-rossbach.jpg)
 
-## Mein Rucksack
+-
+## Noch ein Rucksack ..
 
   * **Andreas Schmidt**
     * Systemarchitekt
@@ -40,11 +42,6 @@ Peter schreibt gern IT-Geschichten und erzählt davon!
     * Autor
     * Cassini Consulting
 ***
-
---
-## Das Ruder gehört in vertrauensvolle Hände
-
-![Peter Rossbach](images/peter-rossbach.jpg)
 
 ---
 ## Das Docker-Prinzip für Microservices
@@ -116,8 +113,7 @@ Diese sollte testbar sein.
 
 
 ---
-## Testgetriebene Infrastruktur as Code
-# für Docker
+## Testgetriebene Infrastruktur as Code für Docker
 
   * Integrationstest
     * [Jolokia TestFramework](https://github.com/rhuss/jolokia-it)
