@@ -1,10 +1,11 @@
 # Testgetriebene Infrastruktur als Code
 
-![](images/ship-container-with-a-bee.png)
+  * [Peter Rossbach | <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com) | [@PRossbach](https://twitter.com/PRossbach)
+  * [Andreas Schmidt | <andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de) | [@aschmidt75](https:/twitter.com/@aschmidt75)
 
 ***
-- [Peter Rossbach | <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com) | [@PRossbach](https://twitter.com/PRossbach)
-- [Andreas Schmidt | <andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de) | [@aschmidt75](https:/twitter.com/@aschmidt75)
+![](images/ship-container-with-a-bee.png)
+
 ---
 ## Mein Rucksack
 
@@ -582,7 +583,7 @@ RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION
 
   * Images sind sehr gross!
     * 350Mb für einen Tomcat...
-  * Reduktion der einzelen Layer auf das notwendig!
+  * Reduktion der einzelnen Layer auf das Notwendige!
   * Löschen was nicht gebraucht wird!
     * Temporäre Datei und Caches entfernen.
     * Dokumentation braucht man nicht mehr zur Runtime.
@@ -629,8 +630,12 @@ $ docker images
 | ---------- | -------- | -- |------------ |
 | bee42/tomcat8 | 201409241010-squash | 7dbd7dd03726 | 312 MB |
 | bee42/tomcat8 | 201409241007 | dc2af8867b3c | 350 MB |
---
+
+-
+
 ### Test it!
+## Regression test
+
 ```
 $ ls
 build.sh  docker  Gemfile  Gemfile.lock  spec  squash.sh  vendor
@@ -775,7 +780,7 @@ end
 ---
 ## Aufbau von Testspezifikationen
 
-  * Server
+  * Server bzw. Container
     * besitzen `Rollen`: Web-, App- DB-Server
     * haben `Konfiguration` je nach Umgebung: Dev, Prd
     * unterscheiden sich in `Aspekten`: OS, Netzwerk, Applikation, Security
@@ -783,7 +788,7 @@ end
 -
 ## Organisation von Testspezifikationen
 
-  * Spec in `Host', `Container`, `Roles` und `Tags`
+  * Spec in `Host`, `Container`, `Roles` und `Tags`
   * Wiederverwendbarkeit von Tests durch Konfigurationen
     - Einbinden von Properties
   * Reporting automatisieren
@@ -881,17 +886,15 @@ end
 ---
 ## Bewertung
 
-  - Beitrag zur Stabilität der Docker Container-Entwicklung
-  - Vorgehen ein Docker-Images mit Qualität zu erschaffen.
-  - Seht es als notwenige Massnahme die Änderbarkeit und Erhalt  zu sichern
-  - Prüfen, ob ein Docker-Container bestimmte Normen erfüllt
-    - Die Kombination nsenter+serverspec ist viel versprechend!
-  - Testorganisation ist notwendig
+  - Stabilität
+  - Qualität
+  - Änderbarkeit
+  - Erhalt
+  - Testbarkeit
+  - Testorganisation
 
 ***
 Der Anfang ist gemacht, aber mehr muss noch getan werden!
-
-[Beispiel der TDD Apache Tomcat reference implementation](md/tomcat-reference.tar.gz)
 
 ---
 ## Fazit
@@ -911,7 +914,7 @@ BDD Alternativen im Java Space:
   * [Spock](https://code.google.com/p/spock/)
   * [Jbehave](http://jbehave.org/)
 -
-### Das solltet Ihr besser können!
+### .. damit es nicht so aussieht:
 
 ![Container shipping personal](/images/container-ship-personal-style.jpg)
 
@@ -923,25 +926,13 @@ BDD Alternativen im Java Space:
 ![](images/Docker-entwicklerspezial.png)
 ***
   * Mitte November 2014 im Buchhandel
-  * Vorbestellung ab Ende der Woche auf der Seite `https://entwickler.de/magazin`
+  * Vorbestellung jetzt möglich auf der Seite `https://entwickler.de/docker_special`
 
 ---
 ## Die neue DevOps-Community braucht Dich!
 
 bee42 solutions gmbh hat den Bau seiner **Infrabricks Line** begonnen!
 
-***
-  * Peter Rossbach
-    * Systemarchitekt
-    * Java Entwickler
-    * DevOps und Infra-Coder mit Herz
-    * Apache Tomcat Committer
-    * Mitglied der Apache Software Foundation
-    * Geschäftsführer der bee42 solutions gbmh
-    * Autor
-
-***
-Peter erzählt gern IT-Geschichten!
 -
 ### Nächsten Streiche
 
@@ -960,7 +951,7 @@ Peter erzählt gern IT-Geschichten!
 
 Folien dieses Vortrags
 ```bash
-docker run -tid -p 8000:8000 rossbachp/tdd-docker-wjax:2014
+docker run -tid -p 8000:8000 rossbachp/tdd-docker:wjax2014
 ```
 **Available at 10.11.2014***
 
