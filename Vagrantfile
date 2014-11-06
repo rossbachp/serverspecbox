@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
     s.vm.host_name = "serverspecbox.example.com"
     s.vm.provider 'virtualbox' do |vb|
       vb.gui = false
-vb.customize [ 'modifyvm', :id, '--nicpromisc2', 'allow-all']
+      vb.customize [ 'modifyvm', :id, '--nicpromisc2', 'allow-all']
       vb.customize [ 'modifyvm', :id, '--memory', '1024']
       vb.customize [ 'modifyvm', :id, '--cpus', '2']
       vb.name = 'serverspecbox'
