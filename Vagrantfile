@@ -7,6 +7,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "serverspecbox", primary: true do |s|
 
+    s.vm.synced_folder "presentation", "/mnt/presentation"
+
     s.vm.network "forwarded_port", guest: 8000, host: 8000
     s.vm.network "forwarded_port", guest: 8001, host: 8001
     s.vm.network "private_network", ip: "192.168.50.8"
