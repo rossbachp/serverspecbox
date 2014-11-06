@@ -1,8 +1,6 @@
 # Testgetriebene Infrastruktur als Code
-
-  * [Peter Rossbach | <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com) | [@PRossbach](https://twitter.com/PRossbach)
-  * [Andreas Schmidt | <andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de) | [@aschmidt75](https:/twitter.com/@aschmidt75)
-
+* [@PRossbach](https://twitter.com/PRossbach)
+* [@aschmidt75](https:/twitter.com/@aschmidt75)
 ***
 ![](images/ship-container-with-a-bee.png)
 
@@ -18,8 +16,7 @@
     * Geschäftsführer der bee42 solutions GmbH
     * Autor
 ***
-Peter schreibt gern IT-Geschichten und erzählt davon!
-
+[Peter Rossbach | <peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com) |
 -
 ## Noch ein Rucksack ..
 
@@ -31,18 +28,20 @@ Peter schreibt gern IT-Geschichten und erzählt davon!
     * Autor
     * Cassini Consulting
 ***
-
+Andreas Schmidt | <andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de) |
 ---
-##Dev Ops
+## Dev Ops
 
 <=>
 
-## You Build    It
-## You Test     It
+### You Build    It
 ### You Run      It
-### You Automate It
+## You Test     It
+## You Automate It
 ### You Measure  It
 ## You Change   It
+### You Ship     It
+
 
 ---
 ## Plötzlich schlägt es ein....
@@ -883,6 +882,7 @@ end
 
 ***
 [bee42 solutions gmbh](http://www.bee42.com)
+
 ---
 ## Bewertung
 
@@ -925,13 +925,15 @@ BDD Alternativen im Java Space:
 
 ![](images/Docker-entwicklerspezial.png)
 ***
-  * Mitte November 2014 im Buchhandel
-  * Vorbestellung jetzt möglich auf der Seite `https://entwickler.de/docker_special`
+  * Ab 17 November 2014 im Buchhandel
+  * Vorbestellung jetzt und hier möglich!
+  * [Docker Sonderheft](https://entwickler.de/docker_spezial`)
 
----
-## Die neue DevOps-Community braucht Dich!
+-
+## bee42 boarding time
 
-bee42 solutions gmbh hat den Bau seiner **Infrabricks Line** begonnen!
+![bee a solution](images/bee42-boarding.png)
+Work with the beekeeper!
 
 -
 ### Nächsten Streiche
@@ -939,11 +941,8 @@ bee42 solutions gmbh hat den Bau seiner **Infrabricks Line** begonnen!
   * Mitte November 2014 erscheint ein Docker-Sonderheft
     * Basis KnowHow und realler Einsatz von Docker
     * Docker-Poster
-  * [WJAX 2014 3-7.11.2014](https://jax.de/wjax2014/)
-    * DevOps-Days
-    * Docker-Workshop
-    * Diskussion
   * [Continuous Lifecycle](http://www.continuouslifecycle.de/)
+  * [Infrabricks Blog](http://www.infrabricks.de)
   * Q2 2015: Buch zum Thema Docker!
 
 -
