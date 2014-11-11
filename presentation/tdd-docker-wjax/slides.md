@@ -886,6 +886,12 @@ end
 [bee42 solutions gmbh](http://www.bee42.com)
 
 ---
+## bee42 boarding time
+
+![bee a solution](images/bee42-boarding.png)
+Work with the beekeeper!
+
+---
 ## Bewertung
 
   - Stabilität
@@ -927,15 +933,9 @@ BDD Alternativen im Java Space:
 
 ![](images/Docker-entwicklerspezial.png)
 ***
-  * Ab 17 November 2014 im Buchhandel
+  * Ab 17. November 2014 im Buchhandel
   * Vorbestellung jetzt und hier möglich!
-  * [Docker Sonderheft](https://entwickler.de/docker_spezial`)
-
--
-## bee42 boarding time
-
-![bee a solution](images/bee42-boarding.png)
-Work with the beekeeper!
+  * [Docker Sonderheft](https://entwickler.de/docker_spezial)
 
 -
 ### Nächsten Streiche
@@ -950,18 +950,25 @@ Work with the beekeeper!
 -
 ### Kontakt
 
-Folien dieses Vortrags
+  * Folien dieses Vortrags
 ```bash
-docker run -tid -p 8000:8000 rossbachp/tdd-docker:wjax2014
+docker run -tid -p 8000:80 rossbachp/docker-tdd:wjax2014
+docker run -tid -p 8000:80 rossbachp/docker-tdd:cl2014
 ```
-**Available at 10.11.2014***
+  * Example
+    - `http://<docker host>:8000/docker-tdd`
+    - `http://<docker host>:8000/docker-tdd/tomcat-reference.tar.gz`
+  * Source
+
+**Available at 11.11.2014***
 
   * [<peter.rossbach@bee42.com>](mailto:peter.rossbach@bee42.com)
-  * [@PRossbach](http://twitter.com/PRossbach)
+    - [@PRossbach](http://twitter.com/PRossbach)
   * [<andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de)
-  * [@aschmidt75](https:/twitter.com/@aschmidt75)
+    - [@aschmidt75](https:/twitter.com/@aschmidt75)
   * [Infrabricks Blog](http://www.infrabricks.de)
-  * [bee42](http://www.bee42.com)
+  * [bee42 solutions gmbh](http://www.bee42.com)
+  * [serverspecbox](https://github.com/rossbachp/serverspecbox)
 
 -
 ### Links
@@ -978,7 +985,7 @@ docker run -tid -p 8000:8000 rossbachp/tdd-docker:wjax2014
 ### Mehr zu Serverspec
   * Serverspec
     * [serverspec](http://serverspec.org/)
-    * [sepcinfra](https://github.com/serverspec/specinfra)
+    * [specinfra](https://github.com/serverspec/specinfra)
     * [rspec](http://rspec.info/)
   * [ServerspecBox](https://github.com/rossbachp/serverspecbox.git)
   * [Docker Container mit Serverspec testen](http://www.infrabricks.de/blog/2014/09/10/docker-container-mit-serverspec-testen/)
