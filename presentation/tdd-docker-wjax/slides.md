@@ -1,6 +1,5 @@
 # Testgetriebene Infrastruktur als Code
-* [@PRossbach](https://twitter.com/PRossbach)
-* [@aschmidt75](https:/twitter.com/@aschmidt75)
+[@PRossbach](https://twitter.com/PRossbach) | [@aschmidt75](https:/twitter.com/@aschmidt75)
 ***
 ![](images/ship-container-with-a-bee.png)
 
@@ -578,7 +577,8 @@ RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION
 ![test warning](images/ampel-gelb.png)
 
 ---
-## Squashing
+### Warum Gelb?
+#### Squashing
 
   * Images sind sehr gross!
     * 350Mb für einen Tomcat...
@@ -589,6 +589,7 @@ RUN wget -q https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION
     * Build Packages löschen - Heroku Buildpacks sind grauenvoll!
     * Ein Compiler gehört nicht in die Produktion.
     * Die richtige Wahl des Base Images (debootstrap!)
+  * Tomcat opimieren
 
 ***
 [Squashing Docker Images](http://jasonwilder.com/blog/2014/08/19/squashing-docker-images/)
@@ -841,11 +842,12 @@ end
 [Maersk_Triple_E](http://en.wikipedia.org/wiki/Maersk_Triple_E_class)
 
 -
-
+### Baue Deinen speziellen Hafen
 ![Ship habour](images/container-ship-habour.jpg)
 
 
 -
+### Aufwand und Nutzen?
 ![Triple-E-PLAN](images/Outside-lead-BIG-Maersk-Triple-E.jpg)
 
 -
@@ -854,7 +856,7 @@ end
   * 2010 geplant
   * Juli 2013 wird das erste Schiff in Betrieb genommen
   * August 2014 12 Schiffe in Betrieb und 8 in Bau!
-  * Regelbetrieb aufgenommen
+  * täglichen Regelbetrieb der Asien-Route aufgenommen
 
 ---
 ## Modellbau ...
