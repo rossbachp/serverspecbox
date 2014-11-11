@@ -11,6 +11,10 @@ Here you find my docker slide deck container from my docker-tdd talks
   - start with `docker run -tid -p 8001:80 rossbachp/docker-tdd:cl2014`
   - open your browser with `http <dockerhost>:8001/docker-tdd`
 
+## find source
+
+  - [serverspecbox](https://github.com/rossbachp/serverspecbox)
+
 Feedback welcome
 
 [Peter Rossbach][3]
