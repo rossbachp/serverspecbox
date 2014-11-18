@@ -2,6 +2,7 @@
 DATE=`date +'%Y%m%d%H%M'`
 DECK=docker-tdd
 EDITION_TAG=wjax2014
+EDITION_TAG2=conli2014
 if [ ! "x" == "x`docker ps -a | grep $DECK`" ]; then
   docker stop $DECK
   docker rm $DECK
@@ -25,10 +26,16 @@ rm -rf build/$DECK.zip
 rm -rf build/$DECK
 rm -rf build/md
 
+COPYDATE=`date +'%Y'`
+cp ../LICENSE LICENSE
 cat <<EOT >Dockerfile
 FROM rossbachp/slidefire
 MAINTAINER Peter Rossbach <peter.rossbach@bee42.com>
+ADD LICENSE /etc/LICENSE
+RUN echo "slidefire" >/etc/provisioned && date >>/etc/provisioned && echo >>/etc/provisioned && echo " Copyright ${COPYDATE} by <peter.rossbach@bee42.com> bee42 solutions gmbh" >>/etc/provisioned
 EOT
+
 docker build -t=rossbachp/$DECK .
 docker tag --force=true rossbachp/$DECK rossbachp/$DECK:$EDITION_TAG
+docker tag --force=true rossbachp/$DECK rossbachp/$DECK:$EDITION_TAG2
 docker tag --force=true rossbachp/$DECK rossbachp/$DECK:$DATE

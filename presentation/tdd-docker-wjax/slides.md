@@ -27,7 +27,7 @@
     * Autor
     * Cassini Consulting
 ***
-Andreas Schmidt | <andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de) |
+Andreas Schmidt | [<andreas.schmidt@cassini.de>](mailto:andreas.schmidt@cassini.de) |
 ---
 ## Dev Ops
 
@@ -121,15 +121,18 @@ Alles nur Software, oder...
   * Image-basierte Ansätze
   * Docker-Container stammen von Entwicklungs-Teams
 -
-### Build Chains produzieren nicht nur Anwendungssoftware
+### Build Chains produzieren
+### nicht nur Anwendungssoftware
 
-Build Chains produzieren Infrastruktur.
-Diese sollte testbar sein.
+  * Build Chains produzieren Infrastruktur.
+  * Diese sollte testbar sein.
 
 ---
-## Testgetriebene Infrastruktur für Docker
+## Testgetriebene Infrastruktur
+## für Docker
 
-### Vieles kann ich zeigen, aber nicht alles...
+### Vieles kann ich zeigen,
+### aber nicht alles...
 -
 ### Was behandelt der Talk nicht:
 
@@ -275,7 +278,7 @@ rspec ./spec/tomcat_spec.rb:8 # apache tomcat8 image should be availble
 
 ```bash
 $ git config --global user.email "peter.rossbach@bee42.com"
-$ git config --global user.name "Peter Rossbach"
+$ git config --global user.name "rossbachp"
 $ vi .gitignore
 $ git init
 $ git add .
@@ -679,7 +682,7 @@ Leider noch ohne Tests, aber das wird bald!
   * Erleichterung der Formulierung von Matches
   * Testen einer ganzen Infrastruktur
 ***
-Serverspec Release 2.0 ist im Oktober herausgekommen.
+Serverspec Release 2.x ist im Oktober 2014 herausgekommen.
 -
 ### Beispiel
 ```ruby
@@ -702,7 +705,7 @@ end
 ```
 
 -
-### Beispiel für Docker-Container (ab version 2.3.0)
+### Beispiel für Docker-Container (ab Version 2.3.0)
 
 ```ruby
 describe docker_image('busybox:latest') do
@@ -889,6 +892,7 @@ end
 ## bee42 boarding time
 
 ![bee a solution](images/bee42-boarding.png)
+***
 Work with the beekeeper!
 
 ---
@@ -953,12 +957,13 @@ BDD Alternativen im Java Space:
   * Folien dieses Vortrags
 ```bash
 docker run -tid -p 8000:80 rossbachp/docker-tdd:wjax2014
-docker run -tid -p 8000:80 rossbachp/docker-tdd:cl2014
+docker run -tid -p 8000:80 rossbachp/docker-tdd:conli2014
 ```
   * Example
     - `http://<docker host>:8000/docker-tdd`
     - `http://<docker host>:8000/docker-tdd/tomcat-reference.tar.gz`
   * Source
+    - [serverspecbox](https://github.com/rossbachp/serverspecbox)
 
 **Available at 11.11.2014***
 
@@ -968,7 +973,6 @@ docker run -tid -p 8000:80 rossbachp/docker-tdd:cl2014
     - [@aschmidt75](https:/twitter.com/@aschmidt75)
   * [Infrabricks Blog](http://www.infrabricks.de)
   * [bee42 solutions gmbh](http://www.bee42.com)
-  * [serverspecbox](https://github.com/rossbachp/serverspecbox)
 
 -
 ### Links
@@ -984,15 +988,16 @@ docker run -tid -p 8000:80 rossbachp/docker-tdd:cl2014
 -
 ### Mehr zu Serverspec
   * Serverspec
-    * [serverspec](http://serverspec.org/)
-    * [specinfra](https://github.com/serverspec/specinfra)
-    * [rspec](http://rspec.info/)
+    - [serverspec](http://serverspec.org/)
+    - [specinfra](https://github.com/serverspec/specinfra)
+    - [rspec](http://rspec.info/)
   * [ServerspecBox](https://github.com/rossbachp/serverspecbox.git)
-  * [Docker Container mit Serverspec testen](http://www.infrabricks.de/blog/2014/09/10/docker-container-mit-serverspec-testen/)
-  * [Security-Tests mit Serverspec](http://www.infrabricks.de/blog/2014/06/12/security-tests-mit-serverspec/)
-  * [Infrataster und Serverspec: Blackbox- und Whitebox-Testing](http://www.infrabricks.de/blog/2014/05/22/blackbox-und-whitebox-testing/)
-  * [Serverspec mit Vagrant verbinden](http://www.infrabricks.de/blog/2014/05/09/serverspec-mit-vagrant-verbinden/)
-  * [Serverspec Standalone betreiben](http://www.infrabricks.de/blog/2014/05/07/serverspec-standalone-betreiben/)
-  * [Serverspec: Server spezifizieren und testen](http://www.infrabricks.de/blog/2014/04/25/serverspec-server-spezifizieren-und-testen/)
+  * Infrabricks Blog
+    - [Docker Container mit Serverspec testen](http://www.infrabricks.de/blog/2014/09/10/docker-container-mit-serverspec-testen/)
+    - [Security-Tests mit Serverspec](http://www.infrabricks.de/blog/2014/06/12/security-tests-mit-serverspec/)
+    - [Infrataster und Serverspec: Blackbox- und Whitebox-Testing](http://www.infrabricks.de/blog/2014/05/22/blackbox-und-whitebox-testing/)
+    - [Serverspec mit Vagrant verbinden](http://www.infrabricks.de/blog/2014/05/09/serverspec-mit-vagrant-verbinden/)
+    - [Serverspec Standalone betreiben](http://www.infrabricks.de/blog/2014/05/07/serverspec-standalone-betreiben/)
+    - [Serverspec: Server spezifizieren und testen](http://www.infrabricks.de/blog/2014/04/25/serverspec-server-spezifizieren-und-testen/)
   * Präsentationen
-    * [OSDC 2014 Andreas Schmidt: Testing server infrastructure with serverspec](http://www.slideee.com/slide/osdc-2014-andreas-schmidt-testing-server-infrastructure-with-serverspec)
+    - [OSDC 2014 Andreas Schmidt: Testing server infrastructure with serverspec](http://www.slideee.com/slide/osdc-2014-andreas-schmidt-testing-server-infrastructure-with-serverspec)
